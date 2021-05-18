@@ -34,7 +34,7 @@ if ! [ "$(which mysql)" == $mariadb_path ]; then
     echo "export PATH=\"$mariadb_path:$PATH\"" >> ~/.bash_profile
   fi
 
-  if [ -f ~/.bash_profile ]; then
+  if [ -f ~/.config/fish/config.fish ]; then
     echo "fish_add_path $mariadb_path" >> ~/.config/fish/config.fish
   fi
 fi
