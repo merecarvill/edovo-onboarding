@@ -4,7 +4,15 @@ This script will set up a local development environment on a mac, primarily usin
 
 ## Running the script
 
-- `bash install.sh -d <working-directory-for-some-installs>`
+- There's no need to clone this repo, just execute this from the command line:
+
+```bash
+curl https://raw.githubusercontent.com/scarvill91/edovo-onboarding/main/install.sh | bash
+```
+
+NOTE:
+
+- Run this command in a working directory where you'd like elasticsearch to be installed.
 
 ### Manual Followup
 
@@ -14,22 +22,17 @@ This script will set up a local development environment on a mac, primarily usin
 
 NOTES:
 
-- The provided working directory determines where elasticsearch will be installed.
 - IntelliJ IDEA Ultimate will be installed in the `~/Applications` directory.
 
 ## What is installed
 
-- XCode tools
+- elasticsearch v7.8.0
 - Homebrew
-- redis
+- imagemagick
+- IntelliJ IDEA Ultimate
+- Java 8
 - mariadb v10.3
 - maven
-- imagemagick
-- elasticsearch v7.8.0
-- Java 8
 - NodeJS v8
-- IntelliJ IDEA Ultimate
-
-## Validating installs
-
-- `java -version` should output a version that begins with "1.8".
+- redis
+- XCode tools
