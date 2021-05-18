@@ -52,5 +52,9 @@ fi
 
 # install elasticsearch v7.8.0
 
-curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.8.0-darwin-x86_64.tar.gz
-tar xf elasticsearch-7.8.0-darwin-x86_64.tar.gz
+if ! [ -d elasticsearch-7.8.0 ]; then
+  curl -L -O https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-7.8.0-darwin-x86_64.tar.gz
+  tar xf elasticsearch-7.8.0-darwin-x86_64.tar.gz
+else
+  echo "Already installed: elasticsearch v7.8.0"
+fi
