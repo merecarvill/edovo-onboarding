@@ -21,7 +21,7 @@ brew install mariadb@10.3
 brew install imagemagick
 
 brew install --cask adoptopenjdk8 --require-sha
-brew install --cask intellij-idea --appdir "$HOME/Applications" --require-sha
+brew install --cask intellij-ide  a --appdir "$HOME/Applications" --require-sha
 
 # setup mariadb
 
@@ -32,6 +32,10 @@ mariadb_path="/usr/local/opt/mariadb@10.3/bin/mysql"
 if ! [ "$(which mysql)" == $mariadb_path ]; then
   if [ -f ~/.bash_profile ]; then
     echo "export PATH=\"$mariadb_path:$PATH\"" >> ~/.bash_profile
+  fi
+
+  if [ -f ~/.zshrc ]; then
+    echo "export PATH=\"$mariadb_path:$PATH\"" >> ~/.zshrc
   fi
 
   if [ -f ~/.config/fish/config.fish ]; then
