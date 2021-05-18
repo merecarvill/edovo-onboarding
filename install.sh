@@ -41,14 +41,14 @@ fi
 
 # install nvm & node v8
 
-# if ! [ -x "$(command -v nvm)" ]; then
-#   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-#   nvm install 8
-#   nvm use 8
-#   nvm alias default 8
-# else
-#   echo "Already installed: NVM"
-# fi
+if ! [ -x "$(command -v nvm)" ]; then
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+  nvm install 8
+  nvm use 8
+  nvm alias default 8
+else
+  echo "Already installed: NVM"
+fi
 
 # install elasticsearch v7.8.0
 
