@@ -21,7 +21,7 @@ brew install mariadb@10.3
 brew install imagemagick
 
 brew install --cask adoptopenjdk8 --require-sha
-brew install --cask intellij-ide  a --appdir "$HOME/Applications" --require-sha
+brew install --cask intellij-idea --appdir "$HOME/Applications" --require-sha
 
 # setup mariadb
 
