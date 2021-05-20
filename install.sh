@@ -46,11 +46,17 @@ if ! [ "$(which mysql)" == $mariadb_path ]; then
   fi
 fi
 
+# setup mariadb: create user and dbs
+
 mysql -u root -Bse "CREATE USER 'jes'@'localhost' IDENTIFIED BY 'p@ssw0rd';
 GRANT ALL PRIVILEGES ON *.* TO 'jes'@'localhost';
 FLUSH PRIVILEGES;
 CREATE DATABASE jes_test;
 CREATE DATABASE jes_development;"
+
+# setup mariadb: set my.cnf, use UTF8 encoding and tune for performance
+
+curl https://raw.githubusercontent.com/scarvill91/edovo-onboarding/main/my.cnf -o /usr/local/etc/my.cnf
 
 # install nvm & nodejs
 
