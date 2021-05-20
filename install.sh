@@ -19,13 +19,16 @@ brew tap adoptopenjdk/openjdk
 brew install redis
 brew install mariadb@10.3
 brew install imagemagick
+brew install yarn
+brew install maven
 
 brew install --cask adoptopenjdk8 --require-sha
 brew install --cask intellij-idea --appdir "$HOME/Applications" --require-sha
 
-# setup mariadb
-
+brew services start redis
 brew services start mariadb@10.3
+
+# setup mariadb
 
 mariadb_path="/usr/local/opt/mariadb@10.3/bin/mysql"
 
@@ -43,7 +46,13 @@ if ! [ "$(which mysql)" == $mariadb_path ]; then
   fi
 fi
 
-# install nvm & node v8
+mysql -u root -Bse "CREATE USER 'jes'@'localhost' IDENTIFIED BY 'p@ssw0rd';
+GRANT ALL PRIVILEGES ON *.* TO 'jes'@'localhost';
+FLUSH PRIVILEGES;
+CREATE DATABASE jes_test;
+CREATE DATABASE jes_development;"
+
+# install nvm & nodejs
 
 if ! [ -x "$(command -v nvm)" ]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
@@ -62,3 +71,21 @@ if ! [ -d elasticsearch-7.8.0 ]; then
 else
   echo "Already installed: elasticsearch v7.8.0"
 fi
+
+# setup JES: clone repo
+
+git clone git@github.com:JailEducationSolutions/JES.git
+
+# setup JES: create local application storage
+
+sudo sh -c 'mkdir -p /opt/jes/media; chmod -R 0777 /opt/jes'
+
+# setup JES: install frontend dependencies
+
+yarn add global less@2.7.0
+# yarn add global grunt grunt-cli jest@25
+
+yarn --cwd jes/admin/src/main/javascript install
+yarn --cwd jes/connect/src/main/javascript install
+yarn --cwd jes/corrections2/src/main/javascript install
+yarn --cwd jes/courses/src/main/javascript install
