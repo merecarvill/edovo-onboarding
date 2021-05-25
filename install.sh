@@ -4,6 +4,12 @@
 
 xcode-select --install
 
+# create missing shell profile dotfiles
+
+touch ~/.bash_profile
+touch ~/.zshrc
+mkdir -p ~/.config/fish && touch ~/.config/fish/config.fish
+
 # install homebrew
 
 if ! [ -x "$(command -v brew)" ]; then
@@ -62,9 +68,6 @@ curl https://raw.githubusercontent.com/scarvill91/edovo-onboarding/main/my.cnf -
 
 if ! [ -x "$(command -v nvm)" ]; then
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
-  nvm install 8
-  nvm use 8
-  nvm alias default 8
 else
   echo "Already installed: NVM"
 fi
@@ -89,7 +92,6 @@ sudo sh -c 'mkdir -p /opt/jes/media; chmod -R 0777 /opt/jes'
 # setup JES: install frontend dependencies
 
 yarn add global less@2.7.0
-# yarn add global grunt grunt-cli jest@25
 
 yarn --cwd jes/admin/src/main/javascript install
 yarn --cwd jes/connect/src/main/javascript install
